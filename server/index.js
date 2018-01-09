@@ -24,7 +24,7 @@ module.exports = app
  * keys as environment variables, so that they can still be read by the
  * Node process on process.env
  */
-if (process.env.NODE_ENV !== 'production') require('../secrets')
+// if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
@@ -94,7 +94,7 @@ const startListening = () => {
   require('./socket')(io)
 }
 
-const syncDb = () => db.sync()
+const syncDb = () => db.sync({ force: true })
 
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)
