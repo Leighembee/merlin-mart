@@ -31,6 +31,7 @@ export default function (state = [], action) {
  */
 export const fetchProducts = () =>
   dispatch =>
+    // OB/JS: more dead code
     // axios.get('/api/products')
     //   .then(res =>
     dispatch(getProducts(products))
