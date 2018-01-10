@@ -1,11 +1,5 @@
-const products = [
-  { name: 'Fireball' },
-  { name: 'Meteor Strike' },
-  { name: 'Summon Dragon' },
-  { name: 'Fire Wall' },
-  { name: 'Fire Arrows' },
-  { name: 'Hellstorm' }
-]
+import axios from 'axios'
+
 /**
  * ACTION TYPES
  */
@@ -13,7 +7,13 @@ const GET_PRODUCTS = 'GET_PRODUCTS'
 /**
  * ACTION CREATORS
  */
-const getProducts = products => ({ type: GET_PRODUCTS, products })
+
+export function getProducts(products) {
+  return {
+    type: GET_PRODUCTS,
+    products
+  }
+}
 
 /**
  * REDUCER
@@ -29,9 +29,12 @@ export default function (state = [], action) {
 /**
  * THUNK CREATORS
  */
-export const fetchProducts = () =>
-  dispatch =>
-    // axios.get('/api/products')
-    //   .then(res =>
-    dispatch(getProducts(products))
-      //.catch(err => console.log(err))
+
+export const fetchProducts = () => {
+  return dispatch => {
+    axios.get('/api/products')
+        .then(res => res.data)
+        .then(products => dispatch(getProducts(products)))
+        .catch(err => console.log(err))
+      }
+    }
