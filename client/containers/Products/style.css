@@ -1,0 +1,16 @@
+.products-container {
+  padding: 30px;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.product-item {
+  flex-direction: column;
+  border:1px solid black;
+  border-radius: 5px;
+  margin: 2%;
+  background: white;
+  width: 250px;
+  height: 250px;
+  margin-top: 10px;
+}

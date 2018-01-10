@@ -1,11 +1,21 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './style.css'
 
-const Products = () => {
+const Products = ({ products }) => {
   return (
-    <div>
+    <div className="products-container">
+      {
+        products.map(product => (
+          <div className="product-item">{product.name}</div>
+        ))
+      }
     </div>
   )
 }
 
-export default Products
+const mapState = ({ products }) => ({
+  products
+})
+
+export default connect(mapState)(Products)

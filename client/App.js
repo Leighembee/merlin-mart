@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Signup, UserHome } from './components'
 import { Products } from './containers'
-import { me } from './store'
+import { me, fetchProducts } from './store'
 /**
  * COMPONENT
  */
@@ -38,6 +38,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
+      dispatch(fetchProducts())
       dispatch(me())
     }
   }
