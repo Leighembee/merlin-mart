@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import store from './store'
-import Routes from './routes'
+import App from './App'
 import '../public/style.css'
 
 
@@ -11,7 +12,9 @@ import './socket'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Routes />
+    <MuiThemeProvider>
+      <App />
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('app')
 )
