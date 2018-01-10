@@ -4,7 +4,7 @@ import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Signup, UserHome } from './components'
-import { Products } from './containers'
+import { Products, ProductPage } from './containers'
 import { me, fetchProducts } from './store'
 /**
  * COMPONENT
@@ -20,7 +20,10 @@ class App extends Component {
       <div>
         <Router history={history}>
           <Main>
-            <Route component={Products} />
+          <Switch>
+            <Route path="/product/:productId" component={ProductPage} />
+            <Route path="/" component={Products} />
+          </Switch>
           </Main>
         </Router>
       </div>
