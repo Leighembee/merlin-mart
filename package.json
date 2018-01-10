@@ -1,7 +1,6 @@
 {
-  "name": "boilermaker",
-  "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "name": "merlin-mart",
+  "description": "Your number one resource for all your magic needs!",
   "engines": {
     "node": ">= 7.0.0"
   },
@@ -23,7 +22,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.15.3",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.16.1",
+    "chance": "^1.0.13",
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
     "express": "^4.14.1",
@@ -73,5 +74,7 @@
     "supertest": "^3.0.0",
     "webpack": "^2.2.1",
     "webpack-livereload-plugin": "^1.0.0"
-  }
+  },
+  "version": "1.0.0",
+  "repository": "https://github.com/merlin-mart/merlin-mart.git"
 }
