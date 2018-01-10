@@ -1,11 +1,12 @@
-// const router = require('express').Router()
-// const { Products } = require('../db/models')
+const router = require('express').Router()
+const db = require('../db')
+const Products = require('../db/models/products')
 // console.log("!!!!!!!!", Products)
 
-// module.exports = router
-
-// router.get('/', (req, res, next) => {
-//   Products.findAll()
-//     .then(products => res.json(products))
-//     .catch(next)
-// })
+router.get('/', (req,res,next) => {
+    Products.findAll()
+     .then(products => res.send(products))
+     .catch(next)
+  })
+  
+  module.exports = router
