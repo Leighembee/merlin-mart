@@ -4,7 +4,8 @@ import IconButton from 'material-ui/IconButton'
 import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MenuIcon from 'material-ui/svg-icons/navigation/menu'
-import TextField from 'material-ui/TextField'
+import { SearchField as Search } from '../../containers'
+import './style.css'
 
 const MenuButton = props => (
   <IconMenu
@@ -23,8 +24,9 @@ const MenuButton = props => (
 MenuButton.muiName = 'IconMenu'
 
 const SearchField = () => (
-  <div>
-    <span>Merlin Mart</span>
+  <div id="nav-items-wrapper">
+      <div>Merlin Mart</div>
+      <Search />
   </div>
 )
 
