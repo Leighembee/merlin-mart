@@ -10,7 +10,7 @@ const Products = ({ products, location }) => {
   const search = new URLSearchParams(location.search).get('search')
 
   const filteredProducts = categoryId ?
-    products.filter(product => product.categoryId === Number(categoryId)) : products
+    products.filter(product => product.categories.includes(Number(categoryId))) : products
 
   return (
     <div id="products-wrapper">
@@ -20,7 +20,7 @@ const Products = ({ products, location }) => {
       <div id="products">
         {
           filteredProducts.map(product => (
-            <Product key={product.id} name={product.name} img={product.image} />
+            <Product key={product.id} name={product.name} image={product.image} />
           ))
         }
       </div>
