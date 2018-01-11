@@ -13,6 +13,8 @@
 const {
   db,
   Product,
+  Category,
+  ProductCategory
 } = require('../server/db')
 
 const Promise = require('bluebird')
@@ -23,7 +25,7 @@ const chance = new Chance()
 
 
 function generateProducts() {
-  const spellNames = [
+  const spells = [
     'Fireball',
     'Magic Missile',
     'Love Spell',
@@ -39,12 +41,13 @@ function generateProducts() {
     'Invisibillity',
     'Teleport',
     'Levitate',
-    'Money'
+    'Money',
   ]
   const products = []
-  for (let i = 0; i <= spellNames.length - 1; i++) {
+  for (let i = 0; i <= spells.length - 1; i++) {
     products.push({
-      name: spellNames[i],
+      name: spells[i],
+      categoryId: spells[i].categoryId,
       description: chance.paragraph(),
       price: chance.floating({ fixed: 2, min: 1, max: 100 }),
       inventory: chance.integer({ min: 0, max: 20 }),
@@ -53,9 +56,41 @@ function generateProducts() {
   }
   return products
 }
+
+
+const productCategories = [
+  { productId: 1, categoryId: 4 },
+  { productId: 2, categoryId: 4 },
+  { productId: 3, categoryId: 2 },
+  { productId: 4, categoryId: 2 },
+  { productId: 5, categoryId: 3 },
+  { productId: 6, categoryId: 2 },
+  { productId: 7, categoryId: 3 },
+  { productId: 8, categoryId: 3 },
+  { productId: 9, categoryId: 3 },
+  { productId: 10, categoryId: 4 },
+  { productId: 11, categoryId: 5 },
+  { productId: 12, categoryId: 4 },
+  { productId: 13, categoryId: 1 },
+  { productId: 14, categoryId: 1 },
+  { productId: 15, categoryId: 1 },
+  { productId: 16, categoryId: 2 }
+]
+
+  const categories = [
+  'Utility',
+  'Enchantment',
+  'Curse',
+  'Invocation',
+  'Protection'
+  ]
+
 const seed = () =>
-  Promise.each(generateProducts(), product => Product.create(product))
-// .then(() => Promise.each(datasources, ds => Datasource.create(ds)))
+  Promise.each(categories, name => Category.create({ name }))
+    .then(() => Promise.each(generateProducts(), product => Product.create(product)))
+    .then(() => Promise.each(productCategories, pc => ProductCategory.create(pc)))
+
+
 
 const main = () => {
   console.log(chalk.blue('Syncing db...'))
