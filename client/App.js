@@ -4,8 +4,8 @@ import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Signup, UserHome } from './components'
-import { Products } from './containers'
-import { me, fetchProducts } from './store'
+import { Products, Product } from './pages'
+import { me, fetchProducts, fetchCategories } from './store'
 /**
  * COMPONENT
  */
@@ -20,7 +20,10 @@ class App extends Component {
       <div>
         <Router history={history}>
           <Main>
-            <Route component={Products} />
+          <Switch>
+            <Route path="/product/:productId" component={Product} />
+            <Route path="/" component={Products} />
+          </Switch>
           </Main>
         </Router>
       </div>
@@ -39,6 +42,7 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(fetchProducts())
+      dispatch(fetchCategories())
       dispatch(me())
     }
   }
