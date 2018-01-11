@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import { connect } from 'react-redux'
-import queryString from 'query-string'
 
 class CategoryFilter extends Component {
   state = {

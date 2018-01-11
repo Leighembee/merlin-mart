@@ -32,7 +32,7 @@ export default function (state = [], action) {
 export const fetchCategories = () => {
   return dispatch => {
     axios.get('/api/categories')
-      .then(res => res.data)
+    .then(res => res.data)
       .then(categories => dispatch(getCategories(categories)))
       .catch(err => console.log(err))
   }
