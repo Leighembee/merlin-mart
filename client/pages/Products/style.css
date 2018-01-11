@@ -1,3 +1,12 @@
+#products-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+#category-filter-wrapper {
+  margin: 1em 2.5em;
+}
+
 #products {
   padding: 30px;
   flex-wrap: wrap;
@@ -8,7 +17,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  border:1px solid black;
+  border: 1px solid black;
   border-radius: 5px;
   margin: 2%;
   background: white;
@@ -28,8 +37,11 @@
   margin-bottom: 1em
 }
 
+
 /* For makeing it prettier later */
-  /* #products .wrap {
+
+
+/* #products .wrap {
     padding: 30px;
     flex-wrap: wrap;
     display: flex;
@@ -62,9 +74,14 @@
     height: 200px;
     width: 200px;
     /* margin-left: calc(50% - 2.5em); */
-    /* margin-top: 10px; */
-  /* }
+
+
+/* margin-top: 10px; */
+
+
+/* }
 
   .product-name {
     align-self: center;
   } */
+
