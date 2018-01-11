@@ -1,7 +1,9 @@
 const db = require('./db')
 const {
   Product,
-  User
+  User,
+  Category,
+  ProductCategory
 } = require('./models')
 // register models
 require('./models')
@@ -9,5 +11,7 @@ require('./models')
 module.exports = {
   db,
   Product,
-  User
+  User,
+  Category,
+  ProductCategory
 }
