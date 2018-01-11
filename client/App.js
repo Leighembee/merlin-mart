@@ -21,10 +21,11 @@ class App extends Component {
       <div>
         <Router history={history}>
           <Main>
-          <Switch>
-            <Route path="/product/:productId" component={ProductPage} />
-            <Route path="/" component={Products} />
-          </Switch>
+            <Route path='/cart' component={Cart} />
+            <Switch>
+              <Route path="/product/:productId" component={ProductPage} />
+              <Route path="/" component={Products} />
+            </Switch>
           </Main>
         </Router>
       </div>

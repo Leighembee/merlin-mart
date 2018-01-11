@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Product } from '../../components'
-import { withRouter } from 'react-router-dom'
-import { CategoryFilter } from '../../containers'
 import './style.css'
 
 const Products = ({ products, location }) => {
@@ -28,9 +26,8 @@ const Products = ({ products, location }) => {
   )
 }
 
-
 const mapState = ({ products }) => ({
   products
 })
 
-export default withRouter(connect(mapState)(Products))
+export default connect(mapState)(Products)
