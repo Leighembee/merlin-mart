@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Signup, UserHome } from './components'
+import { Main, Signup, UserHome, Cart } from './components'
 import { Products } from './containers'
 import { me, fetchProducts } from './store'
 /**
@@ -20,7 +20,10 @@ class App extends Component {
       <div>
         <Router history={history}>
           <Main>
-            <Route component={Products} />
+            <Switch>
+              <Route path='/cart' component={Cart} />
+              <Route component={Products} />
+            </Switch>  
           </Main>
         </Router>
       </div>

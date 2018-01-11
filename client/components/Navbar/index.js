@@ -5,6 +5,8 @@ import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 import TextField from 'material-ui/TextField'
+import { Link } from 'react-router-dom';
+import Cart from '../Cart';
 
 const MenuButton = props => (
   <IconMenu
@@ -15,6 +17,9 @@ const MenuButton = props => (
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
     <MenuItem primaryText="Refresh" />
+    <Link to='/cart'>
+      <MenuItem primaryText='Cart' />
+    </Link>
     <MenuItem primaryText="Help" />
     <MenuItem primaryText="Sign out" />
   </IconMenu>
