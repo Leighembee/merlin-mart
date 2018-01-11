@@ -9,43 +9,73 @@
  *
  * Now that you've got the main idea, check it out in practice below!
  */
-const db = require('../server/db')
-const {User} = require('../server/db/models')
 
-async function seed () {
-  await db.sync({force: true})
-  console.log('db synced!')
-  // Whoa! Because we `await` the promise that db.sync returns, the next line will not be
-  // executed until that promise resolves!
+const {
+  db,
+  Product,
+} = require('../server/db')
 
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
-  ])
-  // Wowzers! We can even `await` on the right-hand side of the assignment operator
-  // and store the result that the promise resolves to in a variable! This is nice!
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+const Promise = require('bluebird')
+const Chance = require('chance')
+const chalk = require('chalk')
+
+const chance = new Chance()
+
+
+function generateProducts() {
+  const spellNames = [
+    'Fireball',
+    'Magic Missile',
+    'Love Spell',
+    'Sleep Spell',
+    'Locusts',
+    'Charm',
+    'Hex',
+    'Curse of the Ages',
+    'Banish',
+    'Disengrate',
+    'Protective Bubble',
+    'Acid Rain',
+    'Invisibillity',
+    'Teleport',
+    'Levitate',
+    'Money'
+  ]
+  const products = []
+  for (let i = 0; i <= spellNames.length - 1; i++) {
+    products.push({
+      name: spellNames[i],
+      description: chance.paragraph(),
+      price: chance.floating({ fixed: 2, min: 1, max: 100 }),
+      inventory: chance.integer({ min: 0, max: 20 }),
+      image: 'http://via.placeholder.com/250x250'
+    })
+  }
+  return products
+}
+const seed = () =>
+  Promise.each(generateProducts(), product => Product.create(product))
+// .then(() => Promise.each(datasources, ds => Datasource.create(ds)))
+
+const main = () => {
+  console.log(chalk.blue('Syncing db...'))
+  db.sync({ force: true })
+    .then(() => {
+      console.log(chalk.blue('Seeding database...'))
+      return seed()
+    })
+    .then(() => {
+      console.log(chalk.green('Seeding succeeded'))
+    })
+    .catch(err => {
+      console.log(chalk.red('Error while seeding'))
+      console.log(chalk.red(err.stack))
+    })
+    .finally(() => {
+      db.close()
+      return null
+    })
 }
 
-// Execute the `seed` function
-// `Async` functions always return a promise, so we can use `catch` to handle any errors
-// that might occur inside of `seed`
-seed()
-  .catch(err => {
-    console.error(err.message)
-    console.error(err.stack)
-    process.exitCode = 1
-  })
-  .then(() => {
-    console.log('closing db connection')
-    db.close()
-    console.log('db connection closed')
-  })
+main()
 
-/*
- * note: everything outside of the async function is totally synchronous
- * The console.log below will occur before any of the logs that occur inside
- * of the async function
- */
-console.log('seeding...')
