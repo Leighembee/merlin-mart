@@ -11,8 +11,12 @@ class CategoryFilter extends Component {
     value: null,
   }
 
-  handleChange = (event, index, value) =>
-    this.props.history.push(`${this.props.pathname || '/products'}?category=${value}`)
+  handleChange = (event, index, value) => {
+    const search = new URLSearchParams(location.search).get('search')
+    const searchQuery = search ? 'search=' + search + '&' : ''
+
+    this.props.history.push(`${this.props.pathname || '/products'}?${searchQuery}category=${value}`)
+  }
 
   render() {
     const categoryId = new URLSearchParams(location.search).get('category')

@@ -6,8 +6,8 @@ import { CategoryFilter } from '../../containers'
 import './style.css'
 
 const Products = ({ products, location }) => {
-
   const categoryId = new URLSearchParams(location.search).get('category')
+  const search = new URLSearchParams(location.search).get('search')
 
   const filteredProducts = categoryId ?
     products.filter(product => product.categoryId === Number(categoryId)) : products
