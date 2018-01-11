@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Product } from '../../components'
+import { CategoryFilter } from '../../containers'
 import './style.css'
 
 const Products = ({ products, location }) => {
