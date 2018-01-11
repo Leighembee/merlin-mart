@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import { Main, Signup, UserHome, Cart } from './components'
-import { Products } from './pages'
+import { Main, Signup, UserHome } from './components'
+import { Products, Cart } from './pages'
 import { me, fetchProducts } from './store'
 /**
  * COMPONENT
@@ -23,7 +23,7 @@ class App extends Component {
             <Switch>
               <Route path='/cart' component={Cart} />
               <Route component={Products} />
-            </Switch>  
+            </Switch>
           </Main>
         </Router>
       </div>
