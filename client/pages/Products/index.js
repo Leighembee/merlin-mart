@@ -28,6 +28,7 @@ const Products = ({ products, location }) => {
   )
 }
 
+
 const mapState = ({ products }) => ({
   products
 })
