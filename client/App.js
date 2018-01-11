@@ -4,7 +4,7 @@ import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Signup, UserHome, Cart } from './components'
-import { Products } from './containers'
+import { Products } from './pages'
 import { me, fetchProducts } from './store'
 /**
  * COMPONENT

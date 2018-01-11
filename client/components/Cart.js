@@ -1,11 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Product } from './Product'
+import '../pages/Products/style.css'
 
-export default class Cart extends Component {
-  render() {
-    return (
-      <div>
-        <h3>Your Shopping Cart is empty.</h3>
-      </div>
-    ); 
-  }
-}
+const Cart = ({ products }) => (
+  <div id="products">
+    {
+      products.map(product => (
+        <Product name={product.name} />
+      ))
+    }
+  </div>
+)
+
+const mapState = ({ products }) => ({
+  products
+})
+
+export default connect(mapState)(Cart)
