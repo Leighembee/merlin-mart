@@ -38,11 +38,7 @@ class CategoryFilter extends Component {
 }
 
 const mapState = ({ categories }) => ({
-  categories: [
-    { id: 1, name: 'fire' },
-    { id: 2, name: 'water' },
-    { id: 3, name: 'wind' }
-  ]
+  categories
 })
 
 export default withRouter(connect(mapState)(CategoryFilter))
