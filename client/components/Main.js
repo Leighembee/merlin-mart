@@ -12,9 +12,7 @@ import { Navbar } from '../containers'
  */
 
 
-const Main = (props) => {
-  const { children, handleClick, isLoggedIn } = props
-
+const Main = ({ children }) => {
   return (
     <div>
       <Navbar />
@@ -23,32 +21,13 @@ const Main = (props) => {
   )
 }
 
-/**
- * CONTAINER
- */
-const mapState = (state) => {
-  return {
-    isLoggedIn: !!state.user.id
-  }
-}
-
-const mapDispatch = (dispatch) => {
-  return {
-    handleClick() {
-      dispatch(logout())
-    }
-  }
-}
-
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Main))
+export default withRouter(Main)
 
 /**
  * PROP TYPES
  */
 Main.propTypes = {
   children: PropTypes.object,
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
 }
