@@ -24,9 +24,9 @@ export function removeFromCart(id) {
 }
 
 const intialState = [
-  { id: 1, name: 'Fireball', image: '', quantity: 3 },
-  { id: 2, name: 'Love Spell', image: '', quantity: 1 },
-  { id: 3, name: 'Money', image: '', quantity: 2 },
+  { id: 1, name: 'Fireball', image: '', quantity: 3, price: 20 },
+  { id: 2, name: 'Love Spell', image: '', quantity: 1, price: 30 },
+  { id: 3, name: 'Money', image: '', quantity: 2, price: 25 }
 ]
 
 /**

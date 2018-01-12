@@ -4,10 +4,10 @@ import IconButton from 'material-ui/IconButton'
 import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import MenuIcon from 'material-ui/svg-icons/navigation/menu'
-import TextField from 'material-ui/TextField'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-const MenuButton = props => (
+const MenuButton = ({ cartItemsCount }) => (
   <IconMenu
     iconButtonElement={
       <IconButton><MenuIcon color="white" /></IconButton>
@@ -17,12 +17,15 @@ const MenuButton = props => (
   >
     <MenuItem primaryText="Account" />
     <Link to='/cart'>
-      <MenuItem primaryText='Cart (3)' />
+      <MenuItem
+        primaryText={`Cart ${cartItemsCount ? `(${cartItemsCount})` : ''}`}
+      />
     </Link>
     <MenuItem primaryText="Login" />
     <MenuItem primaryText="Signup" />
   </IconMenu>
 )
+
 
 MenuButton.muiName = 'IconMenu'
 
@@ -32,10 +35,14 @@ const SearchField = () => (
   </div>
 )
 
-const Navbar = () => (<AppBar
+const Navbar = ({ cartItemsCount }) => (<AppBar
   title={<SearchField />}
   showMenuIconButton={false}
-  iconElementRight={<MenuButton />}
+  iconElementRight={<MenuButton cartItemsCount={cartItemsCount} />}
 />)
 
-export default Navbar
+const mapState = ({ cartItems }) => ({
+  cartItemsCount: cartItems.reduce((acc, item) => acc + item.quantity, 0)
+})
+
+export default connect(mapState)(Navbar)
