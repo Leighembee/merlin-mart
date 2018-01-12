@@ -14,7 +14,9 @@ const {
   db,
   Product,
   Category,
-  ProductCategory
+  ProductCategory,
+  Order,
+  ProductOrder
 } = require('../server/db')
 
 const Promise = require('bluebird')
@@ -51,12 +53,37 @@ function generateProducts() {
       description: chance.paragraph(),
       price: chance.floating({ fixed: 2, min: 1, max: 100 }),
       inventory: chance.integer({ min: 0, max: 20 }),
+      orderId: chance.integer({ min: 1, max: 4 }),
       image: 'http://via.placeholder.com/250x250'
     })
   }
   return products
 }
 
+function generateOrders() {
+  const orders = []
+  for (let j = 0; j <= 3; j++) {
+    orders.push({
+      quantity: chance.integer({ min: 1, max: 100 }),
+      total: chance.floating({ fixed: 2, min: 1, max: 100 }),
+    })
+  }
+  return orders
+}
+
+const productOrders = [
+  { productId: 1, orderId: 4 },
+  { productId: 2, orderId: 1 },
+  { productId: 3, orderId: 2 },
+  { productId: 4, orderId: 2 },
+  { productId: 5, orderId: 3 },
+  { productId: 6, orderId: 2 },
+  { productId: 7, orderId: 1 },
+  { productId: 8, orderId: 3 },
+  { productId: 9, orderId: 1 },
+  { productId: 10, orderId: 4 },
+
+]
 
 const productCategories = [
   { productId: 1, categoryId: 4 },
@@ -77,6 +104,7 @@ const productCategories = [
   { productId: 16, categoryId: 2 }
 ]
 
+
   const categories = [
   'Utility',
   'Enchantment',
@@ -89,7 +117,8 @@ const seed = () =>
   Promise.each(categories, name => Category.create({ name }))
     .then(() => Promise.each(generateProducts(), product => Product.create(product)))
     .then(() => Promise.each(productCategories, pc => ProductCategory.create(pc)))
-
+    .then(() => Promise.each(generateOrders(), order => Order.create(order)))
+    .then(() => Promise.each(productOrders, po => ProductOrder.create(po)))
 
 
 const main = () => {

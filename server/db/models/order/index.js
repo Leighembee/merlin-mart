@@ -3,16 +3,14 @@ const db = require('../../db')
 const Product = require('../product')
 
 const Order = db.define('orders', {
-  date: {
-    type: Sequelize.DATE,
-    defaultValue: Sequelize.NOW
-  },
   quantity: {
     type: Sequelize.INTEGER,
-    allowNull: false
   },
   status: {
     type: Sequelize.ENUM('Created', 'Completed', 'Processing', 'Canceled')
+  },
+  total: {
+    type: Sequelize.INTEGER
   }
 }, {
   hooks: {
