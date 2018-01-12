@@ -1,3 +1,5 @@
+import omit from 'lodash/omit'
+
 /**
  * ACTION TYPES
  */
@@ -57,5 +59,8 @@ function addItemToCart(items, product) {
 }
 
 function removeItemFromCart(items, product) {
+  // delete items[product.id]
+  //return { ...items }
+  var items = omit(items, product.id)
   return items
 }

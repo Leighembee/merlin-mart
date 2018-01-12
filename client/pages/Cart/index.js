@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper'
 import './style.css'
 import map from 'lodash/map'
+import RaisedButton from 'material-ui/RaisedButton'
+import { removeFromCart } from '../../store'
 
-const Cart = ({ items }) => (
+const Cart = ({ items, removeFromCart }) => (
   <div id="cart">
     <div id="cart-items">
       {Object.keys(items).length > 0 ? map(items, (item, id) => (
@@ -16,6 +18,12 @@ const Cart = ({ items }) => (
           <div>{item.name}</div>
           <div>{item.quantity * item.price}</div>
           <input value={item.quantity} />
+          <RaisedButton
+            labelPosition="before"
+            label="Delete"
+            primary
+            onClick={() => removeFromCart(id)}
+          />
         </Paper>
     )) : <div>Your cart is empty.</div>}
     </div>
@@ -26,4 +34,8 @@ const mapState = ({ cartItems }) => ({
   items: cartItems
 })
 
-export default connect(mapState)(Cart)
+const mapDispatch =  dispatch => ({
+  removeFromCart: id => dispatch(removeFromCart(id))
+})
+
+export default connect(mapState, mapDispatch)(Cart)
