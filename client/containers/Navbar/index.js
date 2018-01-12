@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem'
 import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import reduce from 'lodash/reduce'
 
 const MenuButton = ({ cartItemsCount }) => (
   <IconMenu
@@ -42,7 +43,7 @@ const Navbar = ({ cartItemsCount }) => (<AppBar
 />)
 
 const mapState = ({ cartItems }) => ({
-  cartItemsCount: cartItems.reduce((acc, item) => acc + item.quantity, 0)
+  cartItemsCount: reduce(cartItems, (acc, item) => acc + item.quantity, 0)
 })
 
 export default connect(mapState)(Navbar)

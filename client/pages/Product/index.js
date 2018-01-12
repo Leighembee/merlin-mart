@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Product } from '../../components'
+import { Product } from '../../containers'
 import './style.css'
 
 const UserReview = review => (

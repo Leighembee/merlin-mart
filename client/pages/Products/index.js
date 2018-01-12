@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Product } from '../../components'
-import { CategoryFilter } from '../../containers'
+import { CategoryFilter, Product } from '../../containers'
 import './style.css'
 
 const Products = ({ products, location }) => {
@@ -19,7 +18,10 @@ const Products = ({ products, location }) => {
       <div id="products">
         {
           filteredProducts.map(product => (
-            <Product key={product.id} name={product.name} image={product.image} />
+            <Product
+              key={product.id}
+              product={product}
+            />
           ))
         }
       </div>
