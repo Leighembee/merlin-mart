@@ -82,7 +82,6 @@ const productOrders = [
   { productId: 8, orderId: 3 },
   { productId: 9, orderId: 1 },
   { productId: 10, orderId: 4 },
-
 ]
 
 const productCategories = [
@@ -103,7 +102,6 @@ const productCategories = [
   { productId: 15, categoryId: 1 },
   { productId: 16, categoryId: 2 }
 ]
-
 
   const categories = [
   'Utility',
