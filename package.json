@@ -47,7 +47,8 @@
     "redux-thunk": "^2.2.0",
     "sequelize": "^4.3.1",
     "socket.io": "^2.0.3",
-    "volleyball": "^1.4.1"
+    "volleyball": "^1.4.1",
+    "chalk": "^2.3.0"
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.9.0",
@@ -59,7 +60,6 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
     "chai": "^3.5.0",
-    "chalk": "^2.3.0",
     "css-loader": "^0.28.8",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
