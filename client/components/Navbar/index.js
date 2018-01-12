@@ -15,11 +15,12 @@ const MenuButton = props => (
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
-    <MenuItem primaryText="Refresh" />
+    <MenuItem primaryText="Account" />
     <Link to='/cart'>
-      <MenuItem primaryText='Cart' />
+      <MenuItem primaryText='Cart (3)' />
     </Link>
     <MenuItem primaryText="Login" />
+    <MenuItem primaryText="Signup" />
   </IconMenu>
 )
 
