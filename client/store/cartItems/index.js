@@ -23,19 +23,13 @@ export function removeFromCart(id) {
   }
 }
 
-const intialState = [
-  { id: 1, name: 'Fireball', image: '', quantity: 3 },
-  { id: 2, name: 'Love Spell', image: '', quantity: 1 },
-  { id: 3, name: 'Money', image: '', quantity: 2 },
-]
-
 /**
  * REDUCER
  */
-export default function (state = intialState, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case ADD_TO_CART:
-      return addItemToCart(state, action.id)
+      return addItemToCart(state, action.product)
     case REMOVE_FROM_CART:
       return removeItemFromCart(state, action.id)
     case CLEAR_CART:
@@ -45,10 +39,23 @@ export default function (state = intialState, action) {
   }
 }
 
-function addItemToCart(state, product) {
-  return state
+function addItemToCart(items, product) {
+  if (items[product.id]) {
+    const { quantity, ...rest } = items[product.id]
+    return { ...items, [product.id]: { quantity: quantity + 1, ...rest } }
+  }
+  const { name, image, price } = product
+  return {
+    ...items,
+    [product.id]: {
+      quantity: 1,
+      name,
+      image,
+      price
+    }
+  }
 }
 
-function removeItemFromCart(state, product) {
-  return state
+function removeItemFromCart(items, product) {
+  return items
 }
