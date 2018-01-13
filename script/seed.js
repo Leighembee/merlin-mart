@@ -53,7 +53,6 @@ function generateProducts() {
       description: chance.paragraph(),
       price: chance.floating({ fixed: 2, min: 1, max: 100 }),
       inventory: chance.integer({ min: 0, max: 20 }),
-      orderId: chance.integer({ min: 1, max: 4 }),
       image: 'http://via.placeholder.com/250x250'
     })
   }
