@@ -64,7 +64,7 @@ function generateOrders() {
   for (let j = 0; j <= 3; j++) {
     orders.push({
       quantity: chance.integer({ min: 1, max: 100 }),
-      total: chance.floating({ fixed: 2, min: 1, max: 100 }),
+      // total: chance.floating({ fixed: 2, min: 1, max: 100 }),
     })
   }
   return orders
