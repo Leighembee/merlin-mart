@@ -1,17 +1,32 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { persistReducer } from 'redux-persist'
+import localForage from 'localforage'
 import user from './user'
 import products from './products'
 import categories from './categories'
-import cartItems from './cartItems'
+import cart from './cart'
 
-const reducer = combineReducers({ user, products, categories, cartItems })
+const config = {
+  key: 'cart_v1',
+  storage: localForage
+}
+
+const reducer = combineReducers({
+  user,
+  products,
+  categories,
+  cart: persistReducer(config, cart)
+})
+
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
-const store = createStore(reducer, middleware)
 
-export default store
+export default function configureStore() {
+  return createStore(reducer, middleware)
+}
+
 export * from './user'
 export * from './products'
 export * from './categories'
-export * from './cartItems'
+export * from './cart'

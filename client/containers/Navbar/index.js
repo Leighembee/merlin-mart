@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import reduce from 'lodash/reduce'
 import { logout } from '../../store'
 
-const MenuButton = ({ cartItemsCount, logout, isLoggedIn }) => (
+const MenuButton = ({ cartItemCount, logout, isLoggedIn }) => (
   <IconMenu
     iconButtonElement={
       <IconButton><MenuIcon color="white" /></IconButton>
@@ -19,7 +19,7 @@ const MenuButton = ({ cartItemsCount, logout, isLoggedIn }) => (
   >
     <Link to="/cart">
       <MenuItem
-        primaryText={`Cart ${cartItemsCount ? `(${cartItemsCount})` : ''}`}
+        primaryText={`Cart ${cartItemCount ? `(${cartItemCount})` : ''}`}
       />
     </Link>
     {
@@ -52,19 +52,19 @@ const SearchField = () => (
   </div>
 )
 
-const Navbar = ({ cartItemsCount, logout, isLoggedIn }) => (<AppBar
+const Navbar = ({ cartItemCount, logout, isLoggedIn }) => (<AppBar
   title={<SearchField />}
   showMenuIconButton={false}
   iconElementRight={<MenuButton
     isLoggedIn={isLoggedIn}
     logout={logout}
-    cartItemsCount={cartItemsCount}
+    cartItemCount={cartItemCount}
   />}
 />)
 
-const mapState = ({ cartItems, user }) => ({
+const mapState = ({ cart, user }) => ({
   isLoggedIn: !!user.id,
-  cartItemsCount: reduce(cartItems, (acc, item) => acc + item.quantity, 0)
+  cartItemCount: reduce(cart.items, (acc, item) => acc + item.quantity, 0)
 })
 
 const mapDispatch = dispatch => ({
