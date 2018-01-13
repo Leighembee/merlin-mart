@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import { persistReducer } from 'redux-persist'
+import { persistStore, persistReducer } from 'redux-persist'
 import localForage from 'localforage'
 import user from './user'
 import products from './products'
@@ -23,7 +23,13 @@ const reducer = combineReducers({
 const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
 export default function configureStore() {
-  return createStore(reducer, middleware)
+  const store = createStore(reducer, middleware)
+  const persistor = persistStore(store)
+
+  return {
+    store,
+    persistor
+  }
 }
 
 export * from './user'

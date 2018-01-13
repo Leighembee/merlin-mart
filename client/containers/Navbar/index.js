@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import reduce from 'lodash/reduce'
 import { logout } from '../../store'
+import './style.css'
 
 const MenuButton = ({ cartItemCount, logout, isLoggedIn }) => (
   <IconMenu
@@ -21,6 +22,9 @@ const MenuButton = ({ cartItemCount, logout, isLoggedIn }) => (
       <MenuItem
         primaryText={`Cart ${cartItemCount ? `(${cartItemCount})` : ''}`}
       />
+    </Link>
+    <Link to="/">
+      <MenuItem primaryText="View Spells" />
     </Link>
     {
       isLoggedIn ?
@@ -48,7 +52,9 @@ MenuButton.muiName = 'IconMenu'
 
 const SearchField = () => (
   <div>
-    <span>Merlin Mart</span>
+    <Link id="nav-logo" to="/">
+      Merlin Mart
+    </Link>
   </div>
 )
 
