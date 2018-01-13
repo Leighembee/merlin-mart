@@ -22,8 +22,8 @@ const Cart = ({ items }) => (
   </div>
 )
 
-const mapState = ({ cartItems }) => ({
-  items: cartItems
+const mapState = ({ cart }) => ({
+  items: cart.items
 })
 
 export default connect(mapState)(Cart)

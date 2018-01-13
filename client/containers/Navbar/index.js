@@ -7,8 +7,10 @@ import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import reduce from 'lodash/reduce'
+import { logout } from '../../store'
+import './style.css'
 
-const MenuButton = ({ cartItemsCount }) => (
+const MenuButton = ({ cartItemCount, logout, isLoggedIn }) => (
   <IconMenu
     iconButtonElement={
       <IconButton><MenuIcon color="white" /></IconButton>
@@ -16,34 +18,65 @@ const MenuButton = ({ cartItemsCount }) => (
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
-    <MenuItem primaryText="Account" />
-    <Link to='/cart'>
+    <Link to="/cart">
       <MenuItem
-        primaryText={`Cart ${cartItemsCount ? `(${cartItemsCount})` : ''}`}
+        primaryText={`Cart ${cartItemCount ? `(${cartItemCount})` : ''}`}
       />
     </Link>
-    <MenuItem primaryText="Login" />
-    <MenuItem primaryText="Signup" />
+    <Link to="/">
+      <MenuItem primaryText="View Spells" />
+    </Link>
+    {
+      isLoggedIn ?
+        <div>
+          <Link to="/account">
+            <MenuItem primaryText="Account" />
+          </Link>
+          <MenuItem onClick={logout} primaryText="Logout" />
+        </div>
+        :
+        <div>
+          <Link to="/login">
+            <MenuItem primaryText="Login" />
+          </Link>
+          <Link to="/signup">
+            <MenuItem primaryText="Signup" />
+          </Link>
+        </div>
+    }
+
   </IconMenu>
 )
-
 
 MenuButton.muiName = 'IconMenu'
 
 const SearchField = () => (
   <div>
-    <span>Merlin Mart</span>
+    <Link id="nav-logo" to="/">
+      Merlin Mart
+    </Link>
   </div>
 )
 
-const Navbar = ({ cartItemsCount }) => (<AppBar
+const Navbar = ({ cartItemCount, logout, isLoggedIn }) => (<AppBar
   title={<SearchField />}
   showMenuIconButton={false}
-  iconElementRight={<MenuButton cartItemsCount={cartItemsCount} />}
+  iconElementRight={<MenuButton
+    isLoggedIn={isLoggedIn}
+    logout={logout}
+    cartItemCount={cartItemCount}
+  />}
 />)
 
-const mapState = ({ cartItems }) => ({
-  cartItemsCount: reduce(cartItems, (acc, item) => acc + item.quantity, 0)
+const mapState = ({ cart, user }) => ({
+  isLoggedIn: !!user.id,
+  cartItemCount: reduce(cart.items, (acc, item) => acc + item.quantity, 0)
 })
 
-export default connect(mapState)(Navbar)
+const mapDispatch = dispatch => ({
+  logout() {
+    dispatch(logout())
+  }
+})
+
+export default connect(mapState, mapDispatch)(Navbar)
