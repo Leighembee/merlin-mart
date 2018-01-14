@@ -20,10 +20,10 @@ export function getOrders(orders) {
  * REDUCER
  */
 
-export default function (state = {}, action) {
+export default function (state = [], action) {
   switch (action.type) {
     case GET_ORDERS:
-      return { ...state, ...action.orders }
+      return [...state, ...action.orders ]
     default:
       return state
   }
@@ -32,7 +32,7 @@ export default function (state = {}, action) {
 /**
  * THUNK CREATORS
  */
-export const fetchOrders = ()=>{
+export const fetchOrders = () => {
   return dispatch => {
     axios.get('/api/orders')
     .then(res => res.data)
