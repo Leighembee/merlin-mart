@@ -26,7 +26,7 @@ class App extends Component {
             <Switch>
               {/* Routes placed here are available to all visitors */}
               <Route path="/cart" component={Cart} />
-              <Route path="/product/:productId" component={ProductPage} />
+              <Route path="/products/:productId" component={ProductPage} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/products" component={Products} />
@@ -38,7 +38,7 @@ class App extends Component {
                   <Route path="/account" component={UserHome} />
                 </Switch>
               }
-              <Route path="/allorders" component={Orders} />
+              <Route path="/orders" component={Orders} />
               {/* Displays our Products component as a fallback */}
               <Route component={Products} />
             </Switch>
