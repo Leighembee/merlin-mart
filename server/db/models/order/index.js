@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../../db')
-// const ProductOrder = require('../product_order')
+
 
 const Order = db.define('orders', {
   quantity: {
@@ -12,22 +12,6 @@ const Order = db.define('orders', {
   total: {
     type: Sequelize.INTEGER
   }
-// }, {
-//   hooks: {
-//     beforeSave: (order) => {
-//       return ProductOrder.findAll({
-//         where: {
-//           orderId: order.id
-//         }
-//       })
-//         .then((products) => {
-//           products.forEach((p) => {
-//             order.total += (p.price)
-//           })
-//           return order.total
-//         })
-//     }
-//   }
 
 })
 
