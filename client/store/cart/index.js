@@ -28,7 +28,7 @@ export function removeFromCart(id) {
 /**
  * REDUCER
  */
-export default function (state = {}, action) {
+export default function (state = { items: {} }, action) {
   switch (action.type) {
     case ADD_TO_CART:
       return addItemToCart(state, action.product)
@@ -41,19 +41,27 @@ export default function (state = {}, action) {
   }
 }
 
-function addItemToCart(items, product) {
-  if (items[product.id]) {
-    const { quantity, ...rest } = items[product.id]
-    return { ...items, [product.id]: { quantity: quantity + 1, ...rest } }
+function addItemToCart(cart, product) {
+  if (cart.items[product.id]) {
+    const { quantity, ...rest } = cart.items[product.id]
+    return {
+      ...cart,
+      items: {
+        ...cart.items, [product.id]: { quantity: quantity + 1, ...rest }
+      }
+    }
   }
   const { name, image, price } = product
   return {
-    ...items,
-    [product.id]: {
-      quantity: 1,
-      name,
-      image,
-      price
+    ...cart,
+    items: {
+      ...cart.items,
+      [product.id]: {
+        quantity: 1,
+        name,
+        image,
+        price
+      }
     }
   }
 }

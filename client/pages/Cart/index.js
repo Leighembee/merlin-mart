@@ -30,8 +30,8 @@ const Cart = ({ items, removeFromCart }) => (
   </div>
 )
 
-const mapState = ({ cartItems }) => ({
-  items: cartItems
+const mapState = ({ cart }) => ({
+  items: cart.items
 })
 
 const mapDispatch =  dispatch => ({
