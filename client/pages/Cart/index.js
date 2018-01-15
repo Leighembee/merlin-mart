@@ -2,9 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper'
 import './style.css'
+import { checkoutCart } from '../../store'
 import map from 'lodash/map'
+import RaisedButton from 'material-ui/RaisedButton'
 
-const Cart = ({ items }) => (
+const Cart = ({ items, checkout }) => (
   <div id="cart">
     <div id="cart-items">
       {Object.keys(items).length > 0 ? map(items, (item, id) => (
@@ -17,7 +19,10 @@ const Cart = ({ items }) => (
           <div>{item.quantity * item.price}</div>
           <input value={item.quantity} />
         </Paper>
-    )) : <div>Your cart is empty.</div>}
+      )) : <div>Your cart is empty.</div>}
+    </div>
+    <div className="checkout-btn-wrapper">
+      <RaisedButton onClick={() => checkout(items)} label="Checkout" primary={true} />
     </div>
   </div>
 )
@@ -26,4 +31,8 @@ const mapState = ({ cart }) => ({
   items: cart.items
 })
 
-export default connect(mapState)(Cart)
+const mapDispatch = dispatch => ({
+  checkout: items => dispatch(checkoutCart(items))
+})
+
+export default connect(mapState, mapDispatch)(Cart)

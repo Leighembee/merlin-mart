@@ -1,3 +1,4 @@
+import axios from 'axios'
 /**
  * ACTION TYPES
  */
@@ -8,7 +9,6 @@ const CLEAR_CART = 'CLEAR_CART'
 /**
  * ACTION CREATORS
  */
-
 export function addToCart(product) {
   return {
     type: ADD_TO_CART,
@@ -20,6 +20,12 @@ export function removeFromCart(id) {
   return {
     type: REMOVE_FROM_CART,
     id
+  }
+}
+
+export function clearCart() {
+  return {
+    type: CLEAR_CART
   }
 }
 
@@ -66,4 +72,16 @@ function addItemToCart(cart, product) {
 
 function removeItemFromCart(items, product) {
   return items
+}
+
+/**
+ * THUNK CREATORS
+ */
+export const checkoutCart = (items) => {
+  return (dispatch) => {
+    axios.post('/api/orders', { items })
+      .then(res => res.data)
+      // .then(() => dispatch(clearCart()))
+      // .catch(err => console.log(err))
+  }
 }
