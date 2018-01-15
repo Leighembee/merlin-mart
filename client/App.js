@@ -11,7 +11,6 @@ import { StatusBar } from './containers'
 /**
  * COMPONENT
  */
-
 class App extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -31,16 +30,7 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/products" component={Products} />
-              {
-                isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path="/products" component={Products} />
-                  <Route path="/account" component={UserHome} />
-                </Switch>
-              }
-              {/* StatusBar toggles between status e.g. Processing, completed, canceled */}
-              <Route path="/allorders" component={StatusBar} />
+              {isLoggedIn && <Route path="/account" component={UserHome} />}
               {/* Displays our Products component as a fallback */}
               <Route component={Products} />
             </Switch>
