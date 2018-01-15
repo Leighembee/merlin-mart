@@ -10,11 +10,6 @@ import { me, fetchProducts, fetchCategories } from './store'
 /**
  * COMPONENT
  */
-
-const Authenticated = ({ isLoggedIn, children }) => (
-    isLoggedIn ? children : ''
-  )
-
 class App extends Component {
   componentDidMount() {
     this.props.loadInitialData()
