@@ -1,4 +1,6 @@
 import axios from 'axios'
+import omit from 'lodash/omit'
+
 /**
  * ACTION TYPES
  */
@@ -70,8 +72,8 @@ function addItemToCart(cart, product) {
   }
 }
 
-function removeItemFromCart(items, product) {
-  return items
+function removeItemFromCart(cart, id) {
+  return { ...cart, items: omit(cart.items, id) }
 }
 
 /**
