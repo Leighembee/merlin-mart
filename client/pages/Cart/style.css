@@ -1,7 +1,7 @@
-#cart {}
-
-#cart-items {
-  margin: 3em 1em;
+#cart {
+  display: flex;
+  flex-direction: column;
+  margin: 3em 5em
 }
 
 .cart-item {
@@ -10,11 +10,18 @@
   justify-content: space-around;
   height: 5em;
   border-radius: 5px;
-  margin: 1em 3em;
+  margin: 1em 0;
 }
 
 .checkout-btn-wrapper {
-    margin: 1em 4em;
+    margin: 1em 0;
     display: flex;
     justify-content: flex-end;
+}
+
+.checkout-form-wrapper {
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }

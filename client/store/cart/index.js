@@ -1,5 +1,6 @@
 import axios from 'axios'
 import omit from 'lodash/omit'
+import history from '../../history'
 
 /**
  * ACTION TYPES
@@ -41,7 +42,7 @@ export default function (state = { items: {} }, action) {
     case REMOVE_FROM_CART:
       return removeItemFromCart(state, action.id)
     case CLEAR_CART:
-      return []
+      return {}
     default:
       return state
   }
@@ -79,11 +80,14 @@ function removeItemFromCart(cart, id) {
 /**
  * THUNK CREATORS
  */
-export const checkoutCart = (items) => {
-  return (dispatch) => {
-    axios.post('/api/orders', { items })
-      .then(res => res.data)
-      // .then(() => dispatch(clearCart()))
-      // .catch(err => console.log(err))
-  }
+export const checkoutCart = (items, checkoutForm) => dispatch => {
+  history.push('/products')
+  dispatch(clearCart())
+  // FIXME: Wait for API to exist
+  // return (dispatch) => {
+  //   axios.post('/api/orders', { items })
+  //     .then(res => res.data)
+  //     // .then(() => dispatch(clearCart()))
+  //     // .catch(err => console.log(err))
+  // }
 }
