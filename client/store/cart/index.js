@@ -66,9 +66,6 @@ function addItemToCart(cart, product) {
   }
 }
 
-function removeItemFromCart(items, product) {
-  // delete items[product.id]
-  //return { ...items }
-  var items = omit(items, product.id)
-  return items
+function removeItemFromCart(cart, id) {
+  return { ...cart, items: omit(cart.items, id) }
 }

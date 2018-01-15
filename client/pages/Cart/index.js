@@ -20,7 +20,7 @@ const Cart = ({ items, removeFromCart }) => (
           <input value={item.quantity} />
           <RaisedButton
             labelPosition="before"
-            label="Delete"
+            label="Remove"
             primary
             onClick={() => removeFromCart(id)}
           />
