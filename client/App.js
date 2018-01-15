@@ -6,6 +6,7 @@ import history from './history'
 import { Main, Login, Signup, UserHome } from './components'
 import { Products, ProductPage, Cart, Orders } from './pages'
 import { me, fetchProducts, fetchCategories, fetchOrders } from './store'
+import { StatusBar } from './containers'
 
 /**
  * COMPONENT
@@ -38,7 +39,8 @@ class App extends Component {
                   <Route path="/account" component={UserHome} />
                 </Switch>
               }
-              <Route path="/orders" component={Orders} />
+              {/* StatusBar toggles between status e.g. Processing, completed, canceled */}
+              <Route path="/allorders" component={StatusBar} />
               {/* Displays our Products component as a fallback */}
               <Route component={Products} />
             </Switch>

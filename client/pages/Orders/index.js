@@ -1,26 +1,36 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
 import './style.css'
 
-const Orders = () => (
-  <div className="Rtable Rtable--4cols">
-    <div className="Rtable-cell"><h3>Eddard Stark</h3></div>
-    <div className="Rtable-cell">Has a sword named Ice</div>
-    <div className="Rtable-cell">No direwolf</div>
-    <div className="Rtable-cell"><strong>Lord of Winterfell</strong></div>
-  
-    <div className="Rtable-cell"><h3>Jon Snow</h3></div>
-    <div className="Rtable-cell">Has a sword named Longclaw</div>
-    <div className="Rtable-cell">Direwolf: Ghost</div>
-    <div className="Rtable-cell"><strong>Knows nothing</strong></div>
-  
-    <div className="Rtable-cell"><h3>Arya Stark</h3></div>
-    <div className="Rtable-cell">Has a sword named Needle</div>
-    <div className="Rtable-cell">Direwolf: Nymeria</div>
-    <div className="Rtable-cell"><strong>No one</strong></div>
-  </div>
-)
+// Replace tableData with orders in future, note: orders is an array
+const Orders = ({ orders }) => {
+  return (
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHeaderColumn tooltip="The ID">Order ID</TableHeaderColumn>
+            <TableHeaderColumn tooltip="The Name">Name</TableHeaderColumn>
+            <TableHeaderColumn tooltip="The Status">Status</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {orders && orders.map(order => (
+            <TableRow key={order.id}>
+              <TableRowColumn>{order.id}</TableRowColumn>
+              <TableRowColumn>{order.name}</TableRowColumn>
+              <TableRowColumn>{order.status}</TableRowColumn>
+            </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+  )
+}
 
-const mapState = ({ orders }) => ({ orders })
-
-export default connect(mapState)(Orders)
+export default Orders
