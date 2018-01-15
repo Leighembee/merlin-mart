@@ -39,12 +39,7 @@ class App extends Component {
                   <Route path="/account" component={UserHome} />
                 </Switch>
               }
-<<<<<<< HEAD
-              {/* StatusBar toggles between status e.g. Processing, completed, canceled */}
-              <Route path="/allorders" component={StatusBar} />
-=======
               <Route path="/orders" component={Orders} />
->>>>>>> magical-orders
               {/* Displays our Products component as a fallback */}
               <Route component={Products} />
             </Switch>
