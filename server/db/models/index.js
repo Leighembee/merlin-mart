@@ -9,6 +9,7 @@ const ProductOrder = require('./product_order')
 // PUT RELATIONSHIPS HERE
 Product.belongsToMany(Category, { through: 'product_categories' })
 Product.belongsToMany(Order, { through: 'product_orders' })
+Order.belongsToMany(Product, { through: 'product_orders' })
 
 module.exports = {
   Product,
