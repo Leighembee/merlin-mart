@@ -1,3 +1,7 @@
+import axios from 'axios'
+import omit from 'lodash/omit'
+import history from '../../history'
+
 /**
  * ACTION TYPES
  */
@@ -8,7 +12,6 @@ const CLEAR_CART = 'CLEAR_CART'
 /**
  * ACTION CREATORS
  */
-
 export function addToCart(product) {
   return {
     type: ADD_TO_CART,
@@ -23,6 +26,12 @@ export function removeFromCart(id) {
   }
 }
 
+export function clearCart() {
+  return {
+    type: CLEAR_CART
+  }
+}
+
 /**
  * REDUCER
  */
@@ -33,7 +42,7 @@ export default function (state = { items: {} }, action) {
     case REMOVE_FROM_CART:
       return removeItemFromCart(state, action.id)
     case CLEAR_CART:
-      return []
+      return {}
     default:
       return state
   }
@@ -64,6 +73,21 @@ function addItemToCart(cart, product) {
   }
 }
 
-function removeItemFromCart(items, product) {
-  return items
+function removeItemFromCart(cart, id) {
+  return { ...cart, items: omit(cart.items, id) }
+}
+
+/**
+ * THUNK CREATORS
+ */
+export const checkoutCart = (items, checkoutForm) => dispatch => {
+  history.push('/products')
+  dispatch(clearCart())
+  // FIXME: Wait for API to exist
+  // return (dispatch) => {
+  //   axios.post('/api/orders', { items })
+  //     .then(res => res.data)
+  //     // .then(() => dispatch(clearCart()))
+  //     // .catch(err => console.log(err))
+  // }
 }
