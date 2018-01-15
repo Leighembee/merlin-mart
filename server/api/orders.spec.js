@@ -32,7 +32,6 @@ describe('Order routes', () => {
             [
             {
              id: 1,
-             email:
              products: [
                {
                  name: "fireball",
