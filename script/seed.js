@@ -64,6 +64,8 @@ function generateUsers() {
   const users = []
   for (let i = 0; i <= 20; i++) {
     users.push({
+      firstName: chance.name(),
+      lastName: chance.name(),
       email: chance.email(),
       password: chance.word()
     })
@@ -73,8 +75,20 @@ function generateUsers() {
 }
 
 const admins = [
-  { isAdmin: true, email: "admin@merlinmart.com", password: '123456' },
-  { isAdmin: true, email: "admin1@merlinmart.com", password: '123456' }
+  {
+    firstName: 'Daniel',
+    lastName: 'Hollcraft',
+    isAdmin: true,
+    email: "admin@merlinmart.com",
+    password: '123456'
+  },
+  {
+    firstName: 'Vesna',
+    lastName: 'Tan',
+    isAdmin: true,
+    email: "admin1@merlinmart.com",
+    password: '123456'
+  }
 ]
 
 
