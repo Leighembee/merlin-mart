@@ -16,7 +16,7 @@ describe('Order routes', () => {
     beforeEach(() => {
       return Order.create({
         quantity: 1,
-        status: 'Created ',
+        status: 'Created',
         total: 10
       })
     })
