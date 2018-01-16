@@ -168,13 +168,12 @@ export default function (state = [], action) {
  * THUNK CREATORS
  */
 export const fetchOrders = () => {
-  return dispatch => 
-  // {
-  //   axios.get('/api/orders')
-  //   .then(res => res.data)
-  //   .then(orders => 
-      dispatch(getOrders(orders))
-    //)
-  //   .catch(err => console.log(err))
-  // }
+  return dispatch => {
+    axios.get('/api/orders')
+      .then(res => res.data)
+      .then(orders =>
+        dispatch(getOrders(orders))
+      )
+      .catch(err => console.log(err))
+  }
 }
