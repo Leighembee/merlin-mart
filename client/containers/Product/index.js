@@ -8,7 +8,7 @@ import './style.css'
 
 const Product = ({ product, addToCart }) => (
   <Paper className="product" zDepth={3} >
-    <Link className="product" to={`/product/${product.id}`}>  
+    <Link className="product" to={`/products/${product.id}`}>  
       <img alt={product.name} src={product.image} />
       <span className="product-title">{product.name}</span>
     </Link>
