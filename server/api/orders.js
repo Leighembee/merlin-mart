@@ -11,7 +11,6 @@ router.get('/', (req, res, next) => {
   })
     .then((orders) => {
       return orders.map((order) => {
-
         const products = order.products.map(product => ({
           id: product.product_orders.productId,
           name: product.name,
@@ -28,6 +27,15 @@ router.get('/', (req, res, next) => {
     })
     .then(orders => res.send(orders))
     .catch(next)
+})
+
+router.post('/', (req, res, next) => {
+  // const { items, checkoutForm } = req.body
+  res.send('OK')
+  // Order.create({
+
+  // }).then(orders => res.send(orders))
+    // .catch(next)
 })
 
 module.exports = router

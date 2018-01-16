@@ -16,7 +16,8 @@ const {
   Category,
   ProductCategory,
   Order,
-  ProductOrder
+  ProductOrder,
+  User
 } = require('../server/db')
 
 const Promise = require('bluebird')
@@ -59,10 +60,53 @@ function generateProducts() {
   return products
 }
 
+function generateUsers() {
+  const users = []
+  for (let i = 0; i <= 20; i++) {
+    users.push({
+      firstName: chance.name(),
+      lastName: chance.name(),
+      email: chance.email(),
+      password: chance.word()
+    })
+  }
+
+  return users
+}
+
+const admins = [
+  {
+    firstName: 'Daniel',
+    lastName: 'Hollcraft',
+    isAdmin: true,
+    email: "admin@merlinmart.com",
+    password: '123456'
+  },
+  {
+    firstName: 'Vesna',
+    lastName: 'Tan',
+    isAdmin: true,
+    email: "admin1@merlinmart.com",
+    password: '123456'
+  }
+]
+
+
 function generateOrders() {
   const orders = []
-  for (let j = 0; j <= 3; j++) {
-    orders.push({})
+  for (let i = 0; i <= 3; i++) {
+    const statuses = ['Created', 'Completed', 'Processing', 'Canceled']
+    const status = statuses[Math.floor(Math.random() * statuses.length)]
+    orders.push({
+      userId: i+1,
+      firstName: chance.name(),
+      lastName: chance.name(),
+      status,
+      email: chance.email(),
+      address: chance.address(),
+      state: chance.state(),
+      zipcode: chance.zip()
+    })
   }
   return orders
 }
@@ -111,6 +155,8 @@ const seed = () =>
   Promise.each(categories, name => Category.create({ name }))
     .then(() => Promise.each(generateProducts(), product => Product.create(product)))
     .then(() => Promise.each(productCategories, pc => ProductCategory.create(pc)))
+    .then(() => Promise.each(generateUsers(), user => User.create(user)))
+    .then(() => Promise.each(admins, admin => User.create(admin)))
     .then(() => Promise.each(generateOrders(), order => Order.create(order)))
     .then(() => Promise.each(productOrders, po => ProductOrder.create(po)))
 
