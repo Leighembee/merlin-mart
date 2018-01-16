@@ -8,8 +8,10 @@ import './style.css'
 
 const Product = ({ product, addToCart }) => (
   <Paper className="product" zDepth={3} >
-    <img alt={product.name} src={product.image} />
-    <span className="product-title">{product.name}</span>
+    <Link className="product" to={`/product/${product.id}`}>  
+      <img alt={product.name} src={product.image} />
+      <span className="product-title">{product.name}</span>
+    </Link>
     <RaisedButton
       labelPosition="before"
       label="Add to Cart"

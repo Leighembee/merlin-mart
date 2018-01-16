@@ -36,7 +36,7 @@ const reviews = [
 
 const ProductPage = ({ product }) => (
   <section id="products">
-    <Product key={product.id} name={product.name} image={product.image}  />
+    <Product product={product} />
     <div id="description">
       {product.description}
       <ul>
