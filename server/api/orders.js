@@ -38,7 +38,7 @@ router.post('/', (req, res, next) => {
   const { items, checkoutForm } = req.body
   Order.create({
     ...checkoutForm,
-    userId: req.user.id || null,
+    userId: req.user ? req.user.id : null,
     status: 'Created'
   }).tap((order) => {
     const itemsAsArray = map(items, (item, id) => ({ ...item, id }))

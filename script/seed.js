@@ -1,4 +1,3 @@
-
 const {
   db,
   Product,
@@ -6,7 +5,8 @@ const {
   ProductCategory,
   Order,
   ProductOrder,
-  User
+  User,
+  Review
 } = require('../server/db')
 
 const Promise = require('bluebird')
@@ -68,14 +68,14 @@ const admins = [
     firstName: 'Daniel',
     lastName: 'Hollcraft',
     isAdmin: true,
-    email: "admin@merlinmart.com",
+    email: 'admin@merlinmart.com',
     password: '123456'
   },
   {
     firstName: 'Vesna',
     lastName: 'Tan',
     isAdmin: true,
-    email: "admin1@merlinmart.com",
+    email: 'admin1@merlinmart.com',
     password: '123456'
   }
 ]
@@ -140,6 +140,23 @@ const categories = [
   'Protection'
 ]
 
+const reviews = [{
+  id: 1, 
+  rating: 4, 
+  title: 'Excellent spell', 
+  description: 'Works better than voodoo!', 
+  productId: 1,
+  userId: 1
+}, {
+  id: 2,
+  rating: 1,
+  title: 'Very dissatisfied',
+  description: 'The worst spell ever!!!',
+  productId: 2,
+  userId: 2
+}
+]
+
 const seed = () =>
   Promise.each(categories, name => Category.create({ name }))
     .then(() => Promise.each(generateProducts(), product => Product.create(product)))
@@ -148,6 +165,7 @@ const seed = () =>
     .then(() => Promise.each(admins, admin => User.create(admin)))
     .then(() => Promise.each(generateOrders(), order => Order.create(order)))
     .then(() => Promise.each(productOrders, po => ProductOrder.create(po)))
+    .then(() => Promise.each(reviews, review => Review.create(review)))
 
 
 const main = () => {
