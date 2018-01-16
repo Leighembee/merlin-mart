@@ -145,15 +145,15 @@ const reviews = [{
   rating: 4, 
   title: 'Excellent spell', 
   description: 'Works better than voodoo!', 
-  productId: 12,
-  userId: 16
+  productId: 1,
+  userId: 1
 }, {
   id: 2,
   rating: 1,
   title: 'Very dissatisfied',
   description: 'The worst spell ever!!!',
-  productId: 5,
-  userId: 22
+  productId: 2,
+  userId: 2
 }
 ]
 
@@ -165,11 +165,7 @@ const seed = () =>
     .then(() => Promise.each(admins, admin => User.create(admin)))
     .then(() => Promise.each(generateOrders(), order => Order.create(order)))
     .then(() => Promise.each(productOrders, po => ProductOrder.create(po)))
-    .then(() => 
-      Promise.all(reviews.map(review => 
-        Review.create(review))
-      )
-    )
+    .then(() => Promise.each(reviews, review => Review.create(review)))
 
 
 const main = () => {
