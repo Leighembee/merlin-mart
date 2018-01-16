@@ -62,25 +62,22 @@ function generateProducts() {
 function generateOrders() {
   const orders = []
   for (let j = 0; j <= 3; j++) {
-    orders.push({
-      quantity: chance.integer({ min: 1, max: 100 }),
-      // total: chance.floating({ fixed: 2, min: 1, max: 100 }),
-    })
+    orders.push({})
   }
   return orders
 }
 
 const productOrders = [
-  { productId: 1, orderId: 4 },
-  { productId: 2, orderId: 1 },
-  { productId: 3, orderId: 2 },
-  { productId: 4, orderId: 2 },
-  { productId: 5, orderId: 3 },
-  { productId: 6, orderId: 2 },
-  { productId: 7, orderId: 1 },
-  { productId: 8, orderId: 3 },
-  { productId: 9, orderId: 1 },
-  { productId: 10, orderId: 4 },
+  { productId: 1, orderId: 4, quantity: 5, priceAtPurchase: 40 },
+  { productId: 2, orderId: 1, quantity: 2, priceAtPurchase: 32 },
+  { productId: 3, orderId: 2, quantity: 3, priceAtPurchase: 22 },
+  { productId: 4, orderId: 2, quantity: 4, priceAtPurchase: 33 },
+  { productId: 5, orderId: 3, quantity: 5, priceAtPurchase: 44 },
+  { productId: 6, orderId: 2, quantity: 6, priceAtPurchase: 55 },
+  { productId: 7, orderId: 1, quantity: 7, priceAtPurchase: 64 },
+  { productId: 8, orderId: 3, quantity: 3, priceAtPurchase: 44 },
+  { productId: 9, orderId: 1, quantity: 2, priceAtPurchase: 32 },
+  { productId: 10, orderId: 4, quantity: 4, priceAtPurchase: 22 }
 ]
 
 const productCategories = [
@@ -102,13 +99,13 @@ const productCategories = [
   { productId: 16, categoryId: 2 }
 ]
 
-  const categories = [
+const categories = [
   'Utility',
   'Enchantment',
   'Curse',
   'Invocation',
   'Protection'
-  ]
+]
 
 const seed = () =>
   Promise.each(categories, name => Category.create({ name }))

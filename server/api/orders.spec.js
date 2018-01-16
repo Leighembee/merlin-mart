@@ -30,44 +30,41 @@ describe('Order routes', () => {
           expect(res.body).to.be.an.instanceof(Array)
           expect(res.body).to.equal(
             [
-            {
-             id: 1,
-             products: [
-               {
-                 name: "fireball",
-                 price: 12,
-                 quantity: 5,
-                 total: 60
-               },
               {
-                 name: "magic missile",
-                 price: 10,
-                 quantity: 10,
-                 total: 100
-               }
-              ]
-           }
-          ,
-           {
-             id: 2,
-             products: [
-               {
-                 name: "hex",
-                 price: 12,
-                 quantity: 5,
-                 total: 60
-               },
+                id: 1,
+                products: [
+                  {
+                    name: 'fireball',
+                    price: 12,
+                    quantity: 5,
+                    total: 60
+                  },
+                  {
+                    name: 'magic missile',
+                    price: 10,
+                    quantity: 10,
+                    total: 100
+                  }
+                ]
+              },
               {
-                 name: "frogs",
-                 price: 10,
-                 quantity: 10,
-                 total: 100
-               }
-              ]
-           }
-          ])
-          // expect(Object.keys(res.body[0]).filter(key => key !== 'createdAt' && key !== 'updatedAt'))
-          //   .to.deep.equal(['id', 'quantity', 'status', 'total'])
+                id: 2,
+                products: [
+                  {
+                    name: 'hex',
+                    price: 12,
+                    quantity: 5,
+                    total: 60
+                  },
+                  {
+                    name: 'frogs',
+                    price: 10,
+                    quantity: 10,
+                    total: 100
+                  }
+                ]
+              }
+            ])
         })
     })
   })
