@@ -42,7 +42,9 @@ export default function (state = { items: {} }, action) {
     case REMOVE_FROM_CART:
       return removeItemFromCart(state, action.id)
     case CLEAR_CART:
-      return {}
+      return {
+        items: {}
+      }
     default:
       return state
   }
@@ -81,13 +83,11 @@ function removeItemFromCart(cart, id) {
  * THUNK CREATORS
  */
 export const checkoutCart = (items, checkoutForm) => dispatch => {
-  history.push('/products')
-  dispatch(clearCart())
-  // FIXME: Wait for API to exist
-  // return (dispatch) => {
-  //   axios.post('/api/orders', { items })
-  //     .then(res => res.data)
-  //     // .then(() => dispatch(clearCart()))
-  //     // .catch(err => console.log(err))
-  // }
+    axios.post('/api/orders', { items, checkoutForm })
+      .then(res => res.data)
+      .then(() => {
+        history.push('/products')
+        dispatch(clearCart())
+      })
+      .catch(err => console.log(err))
 }
