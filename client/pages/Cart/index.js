@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper'
 import './style.css'
 import { checkoutCart, removeFromCart } from '../../store'
-import CheckoutForm from './CheckoutForm'
 import map from 'lodash/map'
 import RaisedButton from 'material-ui/RaisedButton'
+import CheckoutForm from './CheckoutForm'
+import Quantity from './Quantity'
+
 
 class Cart extends Component {
   constructor() {
@@ -36,7 +38,7 @@ class Cart extends Component {
     const { items, removeFromCart, checkout, user } = this.props
     return (
       <div id="cart">
-        <div id="cart-items">
+        <div id="cart-item">
           {Object.keys(items).length > 0 ? map(items, (item, id) => (
             <Paper key={id} className="cart-item" zDepth={2}>
               <img
@@ -44,8 +46,11 @@ class Cart extends Component {
                 src="http://via.placeholder.com/50x50"
               />
               <div>{item.name}</div>
-              <div>{item.quantity * item.price}</div>
-              <input value={item.quantity} />
+              <div>$ {item.quantity * item.price.toFixed()}.00</div>
+              <Quantity
+                value={item.quantity}
+                itemId={id}
+              />
               <RaisedButton
                 labelPosition="before"
                 label="Remove"
@@ -73,7 +78,10 @@ const mapState = ({ cart, user }) => ({
 const mapDispatch = dispatch => ({
   checkout: (items, checkoutForm) =>
     dispatch(checkoutCart(items, checkoutForm)),
-  removeFromCart: id => dispatch(removeFromCart(id))
+  removeFromCart: id => dispatch(removeFromCart(id)),
+  handleChange(event) {
+    this.setState({ value: event.target.value.toUpperCase() })
+  }
 })
 
 export default connect(mapState, mapDispatch)(Cart)
