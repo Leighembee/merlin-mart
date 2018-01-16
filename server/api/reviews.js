@@ -3,9 +3,12 @@ const { Review, Product, User } = require('../db/models')
 
 router.get('/', (req, res, next) => {
   Review.findAll({
-    include: [ User ] 
+    include: [{
+      model: User,
+      attributes: ['firstName', 'lastName']
+    }] 
   })
-    .then( reviewsWithTheirUsers => res.send(reviewsWithTheirUsers) )
+    .then( reviews => res.send(reviews) )
     .catch(next)
 })
 

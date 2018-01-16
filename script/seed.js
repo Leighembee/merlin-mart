@@ -1,3 +1,14 @@
+const {
+  db,
+  Product,
+  Category,
+  ProductCategory,
+  Order,
+  ProductOrder,
+  User,
+  Review
+} = require('../server/db')
+
 const Promise = require('bluebird')
 const Chance = require('chance')
 const chalk = require('chalk')
@@ -129,6 +140,23 @@ const categories = [
   'Protection'
 ]
 
+const reviews = [{
+  id: 1, 
+  rating: 4, 
+  title: 'Excellent spell', 
+  description: 'Works better than voodoo!', 
+  productId: 12,
+  userId: 16
+}, {
+  id: 2,
+  rating: 1,
+  title: 'Very dissatisfied',
+  description: 'The worst spell ever!!!',
+  productId: 5,
+  userId: 22
+}
+]
+
 const seed = () =>
   Promise.each(categories, name => Category.create({ name }))
     .then(() => Promise.each(generateProducts(), product => Product.create(product)))
@@ -137,6 +165,11 @@ const seed = () =>
     .then(() => Promise.each(admins, admin => User.create(admin)))
     .then(() => Promise.each(generateOrders(), order => Order.create(order)))
     .then(() => Promise.each(productOrders, po => ProductOrder.create(po)))
+    .then(() => 
+      Promise.all(reviews.map(review => 
+        Review.create(review))
+      )
+    )
 
 
 const main = () => {
