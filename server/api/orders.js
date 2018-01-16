@@ -11,7 +11,6 @@ router.get('/', (req, res, next) => {
   })
     .then((orders) => {
       return orders.map((order) => {
-
         const products = order.products.map(product => ({
           id: product.product_orders.productId,
           name: product.name,
