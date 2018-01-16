@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { UserOrderModal } from '../containers'
-
 import {
   Table,
   TableBody,
@@ -11,7 +9,8 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table'
-import ActionHome from 'material-ui/svg-icons/image/edit'
+import { UserOrderModal } from './'
+
 /**
  * COMPONENT
  */
@@ -20,7 +19,6 @@ export const UserHome = (props) => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      
       <Table>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>

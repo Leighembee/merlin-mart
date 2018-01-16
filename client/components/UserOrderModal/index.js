@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Orders } from '../../pages'
 
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import {
   Table,
@@ -29,12 +28,12 @@ export default class UserOrderModal extends Component {
   render() {
     const {products} = this.props
     const actions = [
-      <FlatButton
+      <RaisedButton
         label="Cancel"
         primary={true}
         onClick={this.handleClose}
       />,
-      <FlatButton
+      <RaisedButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
