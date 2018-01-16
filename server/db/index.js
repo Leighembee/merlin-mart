@@ -5,7 +5,8 @@ const {
   Category,
   ProductCategory,
   ProductOrder,
-  Order
+  Order,
+  Review
 } = require('./models')
 // register models
 require('./models')
@@ -17,5 +18,6 @@ module.exports = {
   Category,
   ProductCategory,
   ProductOrder,
-  Order
+  Order,
+  Review
 }
