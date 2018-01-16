@@ -7,6 +7,7 @@ import user from './user'
 import products from './products'
 import categories from './categories'
 import cart from './cart'
+import orders from './orders'
 
 const config = {
   key: 'cart_v1',
@@ -17,6 +18,7 @@ const reducer = combineReducers({
   user,
   products,
   categories,
+  orders,
   cart: persistReducer(config, cart)
 })
 
@@ -36,3 +38,4 @@ export * from './user'
 export * from './products'
 export * from './categories'
 export * from './cart'
+export * from './orders'
