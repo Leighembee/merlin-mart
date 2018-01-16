@@ -8,6 +8,8 @@ import history from '../../history'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const CLEAR_CART = 'CLEAR_CART'
+const QUANTITY_UPDATE = 'QUANTITY_UPDATE'
+
 
 /**
  * ACTION CREATORS
@@ -32,6 +34,15 @@ export function clearCart() {
   }
 }
 
+export function updateQuantity(value, id) {
+  return {
+    type: QUANTITY_UPDATE,
+    value,
+    id
+  }
+}
+
+
 /**
  * REDUCER
  */
@@ -41,6 +52,8 @@ export default function (state = { items: {} }, action) {
       return addItemToCart(state, action.product)
     case REMOVE_FROM_CART:
       return removeItemFromCart(state, action.id)
+    case QUANTITY_UPDATE:
+      return updateQuantityForItem(state, action.value, action.id)
     case CLEAR_CART:
       return {}
     default:
@@ -75,6 +88,20 @@ function addItemToCart(cart, product) {
 
 function removeItemFromCart(cart, id) {
   return { ...cart, items: omit(cart.items, id) }
+}
+
+function updateQuantityForItem(cart, value, id) {
+  return {
+    ...cart,
+    items: {
+      ...cart.items,
+      [id]: {
+        ...cart.items[id],
+        // We need to cast it because the redux store expects a number.
+        quantity: +value
+      }
+    }
+  }
 }
 
 /**

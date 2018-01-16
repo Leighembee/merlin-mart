@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistStore, persistReducer } from 'redux-persist'
+import freeze from 'redux-freeze'
 import localForage from 'localforage'
 import user from './user'
 import products from './products'
@@ -20,7 +21,7 @@ const reducer = combineReducers({
   cart: persistReducer(config, cart)
 })
 
-const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware))
+const middleware = composeWithDevTools(applyMiddleware(thunkMiddleware, freeze))
 
 export default function configureStore() {
   const store = createStore(reducer, middleware)
