@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const { Order, Product } = require('../db/models')
+const map = require('lodash/map')
+const Promise = require('bluebird')
 
 router.get('/', (req, res, next) => {
   Order.findAll({
@@ -33,12 +35,22 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  // const { items, checkoutForm } = req.body
-  res.send('OK')
-  // Order.create({
-
-  // }).then(orders => res.send(orders))
-    // .catch(next)
+  const { items, checkoutForm } = req.body
+  Order.create({
+    ...checkoutForm,
+    userId: req.user.id || null,
+    status: 'Created'
+  }).tap((order) => {
+    const itemsAsArray = map(items, (item, id) => ({ ...item, id }))
+    return Promise.each(itemsAsArray, item =>
+      order.addProduct(item.id, {
+        through: {
+          quantity: item.quantity,
+          priceAtPurchase: item.price
+        }
+      }))
+  }).then(order => res.json(order))
+    .catch(next)
 })
 
 module.exports = router
