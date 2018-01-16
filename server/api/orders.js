@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
       attributes: ['name'],
       model: Product,
     }],
-    attributes: ['id'],
+    attributes: ['id', 'createdAt', 'updatedAt', 'status'],
   })
     .then((orders) => {
       return orders.map((order) => {
@@ -21,6 +21,9 @@ router.get('/', (req, res, next) => {
 
         return {
           id: order.id,
+          status: order.status,
+          createdAt: order.createdAt,
+          updatedAt: order.updatedAt,
           products,
         }
       })
