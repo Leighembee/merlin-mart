@@ -1,16 +1,46 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
+import { UserOrderModal } from './'
 
 /**
  * COMPONENT
  */
 export const UserHome = (props) => {
-  const {email} = props
-
+  const { email, orders } = props
   return (
     <div>
       <h3>Welcome, {email}</h3>
+      <Table>
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+          <TableRow>
+            <TableHeaderColumn>Order ID</TableHeaderColumn>
+            <TableHeaderColumn>Date</TableHeaderColumn>
+            <TableHeaderColumn>Status</TableHeaderColumn>
+            <TableHeaderColumn>Items</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody displayRowCheckbox={false}>
+          {orders && orders.map(order => (
+            <TableRow key={order.id}>
+              <TableRowColumn>{order.id}</TableRowColumn>
+              <TableRowColumn>{order.date || 'null' }</TableRowColumn>
+              <TableRowColumn>{order.status || 'null'}</TableRowColumn>
+              <TableRowColumn>
+                <UserOrderModal products={order.products} />
+              </TableRowColumn>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   )
 }
@@ -20,7 +50,8 @@ export const UserHome = (props) => {
  */
 const mapState = (state) => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    orders: state.orders
   }
 }
 
