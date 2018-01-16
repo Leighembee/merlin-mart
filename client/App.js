@@ -4,8 +4,9 @@ import { Route, Switch, Router } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import { Main, Login, Signup, UserHome } from './components'
-import { Products, ProductPage, Cart } from './pages'
-import { me, fetchProducts, fetchCategories } from './store'
+import { Products, ProductPage, Cart, Orders } from './pages'
+import { me, fetchProducts, fetchCategories, fetchOrders } from './store'
+import { StatusBar } from './containers'
 
 /**
  * COMPONENT
@@ -25,10 +26,11 @@ class App extends Component {
             <Switch>
               {/* Routes placed here are available to all visitors */}
               <Route path="/cart" component={Cart} />
-              <Route path="/product/:productId" component={ProductPage} />
+              <Route path="/products/:productId" component={ProductPage} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/products" component={Products} />
+              <Route path="/orders" component={StatusBar} />
               {isLoggedIn && <Route path="/account" component={UserHome} />}
               {/* Displays our Products component as a fallback */}
               <Route component={Products} />
@@ -59,6 +61,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(fetchProducts())
       dispatch(fetchCategories())
+      dispatch(fetchOrders())
       dispatch(me())
     }
   }
