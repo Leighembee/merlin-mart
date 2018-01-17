@@ -43,7 +43,7 @@ function generateProducts() {
       description: chance.paragraph(),
       price: chance.floating({ fixed: 2, min: 1, max: 100 }),
       inventory: chance.integer({ min: 0, max: 20 }),
-      image: 'http://via.placeholder.com/250x250'
+      image: chance.pickone(['https://i.imgur.com/4s0rICe.png?1', 'https://i.imgur.com/9aXmk4m.png?1', 'https://i.imgur.com/rt4Zo2v.png?1', 'https://i.imgur.com/gcYgddP.png?1', 'https://i.imgur.com/bvHdMQU.png?1', 'https://i.imgur.com/XqpESVp.png?1', 'https://i.imgur.com/IB0DAHY.png?1', 'https://i.imgur.com/1ue7byN.png?1', 'https://i.imgur.com/DKof3nO.png?1', 'https://i.imgur.com/iR5LByf.png?2'])
     })
   }
   return products
@@ -141,10 +141,10 @@ const categories = [
 ]
 
 const reviews = [{
-  id: 1, 
-  rating: 4, 
-  title: 'Excellent spell', 
-  description: 'Works better than voodoo!', 
+  id: 1,
+  rating: 4,
+  title: 'Excellent spell',
+  description: 'Works better than voodoo!',
   productId: 1,
   userId: 1
 }, {
