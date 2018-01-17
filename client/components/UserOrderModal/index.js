@@ -10,6 +10,7 @@ import {
   TableHeaderColumn,
   TableRow,
   TableRowColumn,
+  
 } from 'material-ui/Table'
 
 export default class UserOrderModal extends Component { 
@@ -38,13 +39,14 @@ export default class UserOrderModal extends Component {
         primary={true}
         keyboardFocused={true}
         onClick={this.handleClose}
+        style={{margin:'2em'}}
       />,
     ];
 
 
     return (
       <div>
-        <RaisedButton label="Expand me..." onClick={this.handleOpen} />
+        <RaisedButton label="Details" onClick={this.handleOpen} />
         <Dialog
           title="Products"
           actions={actions}
@@ -63,7 +65,7 @@ export default class UserOrderModal extends Component {
       <TableBody displayRowCheckbox={false}>
         {products.map(product=>{
           return(
-            <TableRow key={product.id}> // Formats the rows to fit header
+            <TableRow key={product.id}>
             <TableRowColumn>{product.name}</TableRowColumn>
             <TableRowColumn>{product.price}</TableRowColumn>
             <TableRowColumn>{product.quantity}</TableRowColumn>
