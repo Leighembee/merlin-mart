@@ -15,9 +15,9 @@
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & VESNA_IS_AWESOME='true' npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public",
-    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/merlinmart-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register",
-    "test-watch": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/merlinmart-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register -w",
-    "test-client-watch": "NODE_ENV='test' mocha ./client/**/**/*.spec.js --compilers js:babel-register -w"
+    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/merlinmart-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require ignore-styles --compilers js:babel-register",
+    "test-watch": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/merlinmart-test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register --require ignore-styles -w",
+    "test-client-watch": "NODE_ENV='test' mocha ./client/**/**/*.spec.js --compilers js:babel-register  --require ignore-styles -w"
   },
   "author": "",
   "license": "ISC",
@@ -72,6 +72,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.5.1",
+    "ignore-styles": "^5.0.1",
     "mocha": "^3.3.0",
     "nodemon": "^1.12.1",
     "react-test-renderer": "^16.0.0",

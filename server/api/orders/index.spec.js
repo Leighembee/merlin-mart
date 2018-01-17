@@ -2,10 +2,10 @@
 
 const { expect } = require('chai')
 const request = require('supertest')
-const db = require('../db/db')
+const db = require('../../db/db')
 const app = require('../index')
 
-const Order = require('../db/models/order')
+const Order = require('../../db/models/order')
 
 describe('Order routes', () => {
   beforeEach(() => {
